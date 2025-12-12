@@ -1,0 +1,45 @@
+{% extends "layout.html" %}
+{% block title %}Entrar{% endblock %}
+
+{% block content %}
+<div class="pawly-auth-section">
+
+    <div class="pawly-auth-card text-center">
+
+        <div class="pawly-header-emoji">🐾</div>
+        <h2 class="pawly-page-title">Bem-vinda de volta 💙</h2>
+        <p class="pawly-subtitle">
+            Acesse sua conta para gerenciar seus pets e cuidados.
+        </p>
+
+        {% if error %}
+            <div class="alert alert-danger text-center mt-3">{{ error }}</div>
+        {% endif %}
+
+        <form method="POST" class="mt-4 text-start">
+
+            <div class="mb-3">
+                <label class="form-label">Email</label>
+                <input type="email" class="form-control" name="email" required>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Senha</label>
+                <input type="password" class="form-control" name="senha" required>
+            </div>
+
+
+            <button type="submit" class="btn btn-primary w-100 mt-3">
+                Entrar
+            </button>
+        </form>
+
+        <p class="mt-4">
+            Ainda não tem conta?
+            <a href="{{ url_for('register') }}">Criar conta</a>
+        </p>
+
+    </div>
+
+</div>
+{% endblock %}

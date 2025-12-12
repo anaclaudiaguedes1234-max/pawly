@@ -1,0 +1,246 @@
+/*
+    Pawly - Clean & Cute Theme
+    -----------------------------------
+    Fonts: Quicksand, Pacifico
+    Color Palette:
+    - Base Background: #f8f9fa (Very Light Grey)
+    - Card/Section Background: #ffffff (White)
+    - Primary Accent (Navbar, Links): #89CFF0 (Baby Blue)
+    - Secondary Accent (Buttons): #FFC0CB (Pink)
+    - Text: #5D6D7E (Slate Grey)
+    - Brand Font Color: #007bff (A vibrant blue for the brand)
+*/
+
+/* ======== GENERAL & TYPOGRAPHY ======== */
+
+body {
+    font-family: 'Quicksand', sans-serif;
+    background-color: #f8f9fa;
+    color: #5D6D7E;
+}
+
+h1, h2, h3, h4, h5, h6, .pawly-page-title {
+    font-weight: 700;
+    color: #4a6fa5; /* Darker blue for headers */
+}
+
+a {
+    color: #89CFF0;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #5a9bd3; /* Darker shade of baby blue */
+}
+
+/* ======== LAYOUT ======== */
+
+.pawly-container {
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+
+/* ======== NAVBAR ======== */
+
+.navbar.bg-light {
+    background-color: #ffffff !important; /* Override Bootstrap */
+    border-bottom: 1px solid #e9ecef;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    padding: 10px 0;
+}
+
+.pawly-brand {
+    font-family: 'Pacifico', cursive;
+    font-size: 1.8rem;
+    color: #007bff !important; /* Vibrant blue */
+}
+
+.navbar .nav-link {
+    font-weight: 500;
+    color: #5D6D7E !important; /* Slate Grey for links */
+}
+
+.navbar .nav-link:hover {
+    color: #007bff !important; /* Vibrant blue on hover */
+}
+
+.navbar .nav-link.text-danger {
+    color: #dc3545 !important;
+}
+
+.navbar .nav-link.disabled {
+    opacity: 0.7;
+}
+
+/* ======== CARDS & SECTIONS (Replaces old .pawly-section/.pawly-card) ======== */
+
+.pawly-section {
+    display: flex;
+    justify-content: center;
+    padding: 2rem 1rem;
+}
+
+.pawly-card {
+    width: 100%;
+    max-width: 900px;
+    padding: 2.5rem;
+    border-radius: 24px; /* Cuter, more rounded corners */
+    background: #ffffff;
+    border: none;
+    box-shadow: 0 10px 30px -15px rgba(137, 207, 240, 0.5); /* Soft, blue-tinted shadow */
+}
+
+.pawly-header-emoji {
+    font-size: 3rem;
+    line-height: 1;
+    margin-bottom: 0.5rem;
+}
+
+.pawly-page-title {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.pawly-subtitle {
+    font-size: 1rem;
+    color: #8a9aaa;
+    margin-bottom: 1.5rem;
+}
+
+.pawly-badge {
+    display: inline-block;
+    background: #e0f7ff;
+    color: #007bff;
+    padding: 8px 16px;
+    border-radius: 999px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    border: 1px solid #bce6ff;
+}
+
+/* ======== FORMS & BUTTONS ======== */
+.form-label {
+    font-weight: 700;
+    color: #4a6fa5;
+    margin-bottom: 0.5rem;
+}
+
+.form-control {
+    border-radius: 12px; /* Rounded inputs */
+    padding: 12px 16px;
+    border: 1px solid #ced4da;
+    box-shadow: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-control:focus {
+    border-color: #89CFF0;
+    box-shadow: 0 0 0 3px rgba(137, 207, 240, 0.3);
+}
+
+.btn {
+    border-radius: 12px;
+    padding: 10px 20px;
+    font-weight: 700;
+    border: none;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.btn-primary {
+    background-color: #FFC0CB; /* Pink */
+    border-color: #FFC0CB;
+    color: #333;
+}
+
+.btn-primary:hover {
+    background-color: #ffacbe;
+    border-color: #ffacbe;
+    color: #333;
+}
+
+.btn-secondary {
+    background-color: #e9ecef;
+    color: #333;
+}
+
+.btn-danger {
+    background-color: #f7a0a0;
+}
+
+
+/* ======== PET LIST SPECIFIC ======== */
+.pet-card {
+    background-color: #fff;
+    border-radius: 20px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 10px 30px -15px rgba(137, 207, 240, 0.5);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.pet-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px -15px rgba(137, 207, 240, 0.7);
+}
+
+.pet-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #89CFF0;
+}
+
+.pet-info h5 {
+    margin: 0;
+    font-weight: 700;
+    color: #4a6fa5;
+}
+
+.pet-info p {
+    margin: 0;
+    color: #8a9aaa;
+}
+
+.pet-info .badge {
+    background-color: #e0f7ff;
+    color: #007bff;
+    font-weight: 700;
+}
+
+/* ======== AUTH PAGES (Login/Register) ======== */
+
+.pawly-auth-section {
+    display: flex;
+    align-items: center; /* Vertical center */
+    justify-content: center; /* Horizontal center */
+    min-height: calc(100vh - 80px); /* Full viewport height minus navbar */
+    padding: 1rem;
+}
+
+.pawly-auth-card {
+    width: 100%;
+    max-width: 450px; /* Narrower card for auth forms */
+    padding: 2.5rem;
+    border-radius: 24px;
+    background: #ffffff;
+    border: none;
+    box-shadow: 0 10px 30px -15px rgba(137, 207, 240, 0.5);
+}
+
+/* ======== UTILITIES ======== */
+.pawly-card-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center items horizontally */
+    margin-bottom: 1.5rem;
+}

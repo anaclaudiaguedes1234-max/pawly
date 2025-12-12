@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+{% block title %}Bem-vindo ao Pawly 🐾{% endblock %}
+
+{% block content %}
+<div class="pawly-section">
+    <div class="pawly-card text-center">
+
+        <div class="pawly-header-emoji">🐶💊</div>
+        <div class="pawly-badge">Bem-vindo ao Pawly Care</div>
+
+        <h1 class="pawly-page-title">Organize a saúde dos seus pets com carinho</h1>
+        <p class="pawly-subtitle">
+            Controle vacinas, banhos, remédios, consultas e tudo que importa
+            para o bem-estar dos seus bichinhos em um único lugar simples e intuitivo.
+        </p>
+
+        {% if current_user.is_authenticated %}
+            <a href="{{ url_for('dashboard') }}" class="btn btn-primary btn-lg mt-2">
+                Ir para o Dashboard
+            </a>
+        {% else %}
+            <a href="{{ url_for('login') }}" class="btn btn-success btn-lg mt-2 me-2">
+                Entrar
+            </a>
+            <a href="{{ url_for('register') }}" class="btn btn-outline-primary btn-lg mt-2">
+                Criar conta
+            </a>
+        {% endif %}
+
+    </div>
+</div>
+{% endblock %}

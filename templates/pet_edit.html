@@ -1,0 +1,71 @@
+{% extends "layout.html" %}
+{% block title %}Editar Pet{% endblock %}
+
+{% block content %}
+<div class="pawly-section">
+    <div class="pawly-card">
+
+        <div class="text-center">
+            <div class="pawly-header-emoji">✏️🐶</div>
+            <div class="pawly-badge">Editar pet</div>
+            <h2 class="pawly-page-title">Atualizar informações de {{ pet.nome }}</h2>
+            <p class="pawly-subtitle">
+                Ajuste os dados do seu pet para manter tudo sempre atualizado.
+            </p>
+        </div>
+
+        <div class="text-center mb-3">
+            {% if pet.foto %}
+                {% if pet.foto[:4] == 'http' %}
+                    <img src="{{ pet.foto }}" width="180" class="rounded shadow">
+                {% else %}
+                    <img src="{{ url_for('static', filename=pet.foto) }}" width="180" class="rounded shadow">
+                {% endif %}
+            {% endif %}
+        </div>
+
+        <form method="POST" enctype="multipart/form-data" class="mt-2">
+
+            <label class="form-label">Nome</label>
+            <input type="text" class="form-control" name="nome" value="{{ pet.nome }}">
+
+            <label class="form-label mt-3">Espécie</label>
+            <input type="text" class="form-control" name="especie" value="{{ pet.especie }}">
+
+            <label class="form-label mt-3">Raça</label>
+            <input type="text" class="form-control" name="raca" value="{{ pet.raca }}">
+
+            <label class="form-label mt-3">Idade</label>
+            <input type="number" class="form-control" name="idade" value="{{ pet.idade or '' }}">
+
+            <label class="form-label mt-3">Peso (kg)</label>
+            <input type="number" step="0.01" class="form-control" name="peso" value="{{ pet.peso or '' }}">
+
+            <label class="form-label mt-3">Data de nascimento</label>
+            <input type="date" class="form-control"
+                name="data_nascimento"
+                value="{% if pet.data_nascimento %}{{ pet.data_nascimento.strftime('%Y-%m-%d') }}{% endif %}">
+
+            <hr class="my-4">
+
+            <p class="mb-1"><strong>Foto do pet</strong></p>
+            <small class="text-muted">Se não enviar nada, mantemos a foto atual.</small>
+
+            <label class="form-label mt-3">Upload de nova foto</label>
+            <input type="file" class="form-control" name="foto_arquivo" accept="image/*">
+
+            <div class="text-center my-2">ou</div>
+
+            <label class="form-label">Atualizar foto por URL</label>
+            <input type="url" class="form-control" name="foto_url"
+                placeholder="https://..."
+                value="{% if pet.foto and pet.foto[:4] == 'http' %}{{ pet.foto }}{% endif %}">
+
+            <button class="btn btn-warning w-100 mt-4">
+                Salvar alterações
+            </button>
+
+        </form>
+    </div>
+</div>
+{% endblock %}

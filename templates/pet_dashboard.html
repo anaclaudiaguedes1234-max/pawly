@@ -1,0 +1,82 @@
+{% extends "layout.html" %}
+{% block title %}Resumo de {{ pet.nome }}{% endblock %}
+
+{% block content %}
+<div class="pawly-section">
+    <div class="pawly-card">
+
+        <div class="pawly-card-header">
+            <div class="pawly-header-emoji">🐶</div>
+            <div class="pawly-badge">Perfil do pet</div>
+
+            {% if pet.foto %}
+                {% if pet.foto[:4] == 'http' %}
+                    <img src="{{ pet.foto }}" width="180" class="rounded shadow mb-3">
+                {% else %}
+                    <img src="{{ url_for('static', filename=pet.foto) }}" width="180" class="rounded shadow mb-3">
+                {% endif %}
+            {% endif %}
+
+            <h2 class="pawly-page-title">{{ pet.nome }}</h2>
+            <p class="pawly-subtitle mb-0">
+                {{ pet.raca or "Raça não informada" }} • {{ pet.especie or "Espécie não informada" }}
+            </p>
+        </div>
+
+        <div class="row mb-4">
+            <div class="col-md-4 mb-3">
+                <div class="stat-card p-3 text-center">
+                    <h6 class="mb-1 text-muted">Idade</h6>
+                    <h3 class="mb-0">{{ pet.idade or "—" }}</h3>
+                </div>
+            </div>
+
+            <div class="col-md-4 mb-3">
+                <div class="stat-card p-3 text-center">
+                    <h6 class="mb-1 text-muted">Peso</h6>
+                    <h3 class="mb-0">
+                        {% if pet.peso %}
+                            {{ "%.1f"|format(pet.peso) }} kg
+                        {% else %}
+                            —
+                        {% endif %}
+                    </h3>
+                </div>
+            </div>
+
+            <div class="col-md-4 mb-3">
+                <div class="stat-card p-3 text-center">
+                    <h6 class="mb-1 text-muted">Cuidados registrados</h6>
+                    <h3 class="mb-0">{{ total_cuidados }}</h3>
+                </div>
+            </div>
+        </div>
+
+        <div class="mb-4">
+            <a href="{{ url_for('pet_care', pet_id=pet.id) }}" class="btn btn-primary">
+                Ver / Registrar cuidados
+            </a>
+            <a href="{{ url_for('edit_pet', pet_id=pet.id) }}" class="btn btn-outline-secondary ms-2">
+                Editar pet
+            </a>
+        </div>
+
+        <h4 class="mb-3">Últimos cuidados</h4>
+
+        {% if cuidados %}
+            <ul class="list-group">
+                {% for c in cuidados %}
+                <li class="list-group-item">
+                    <strong>{{ c.tipo }}</strong> — {{ c.data.strftime("%d/%m/%Y") }}
+                    <br>
+                    <small class="text-muted">{{ c.descricao or "Sem descrição" }}</small>
+                </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p class="text-muted">Nenhum cuidado registrado ainda.</p>
+        {% endif %}
+
+    </div>
+</div>
+{% endblock %}

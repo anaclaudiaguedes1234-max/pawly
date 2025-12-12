@@ -1,0 +1,94 @@
+{% extends "layout.html" %}
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+<div class="pawly-section">
+    <div class="pawly-card">
+
+        <div class="d-flex align-items-center justify-content-between mb-3">
+            <div>
+                <div class="pawly-header-emoji">📊</div>
+                <div class="pawly-badge">Resumo geral</div>
+                <h2 class="pawly-page-title">Seu painel de cuidados</h2>
+                <p class="pawly-subtitle mb-0">
+                    Acompanhe seus pets, veja os últimos cuidados e mantenha tudo em dia.
+                </p>
+            </div>
+        </div>
+
+        <!-- Cards de estatística -->
+        <div class="row mb-4">
+            <div class="col-md-4 mb-3">
+                <div class="stat-card p-3 text-center">
+                    <h6 class="mb-1 text-muted">Pets cadastrados</h6>
+                    <h2 class="mb-0">{{ total_pets }}</h2>
+                </div>
+            </div>
+
+            <div class="col-md-4 mb-3">
+                <div class="stat-card p-3 text-center">
+                    <h6 class="mb-1 text-muted">Cuidados registrados</h6>
+                    <h2 class="mb-0">{{ total_cuidados }}</h2>
+                </div>
+            </div>
+        </div>
+
+        <!-- Meus pets -->
+        <h4 class="mt-4 mb-3">Meus pets</h4>
+
+        {% if pets %}
+            <div class="row">
+                {% for pet in pets %}
+                <div class="col-md-4 col-sm-6 mb-3">
+                    <div class="card pet-card">
+                        {% if pet.foto %}
+                            {% if pet.foto[:4] == 'http' %}
+                                <img src="{{ pet.foto }}" class="pet-img card-img-top">
+                            {% else %}
+                                <img src="{{ url_for('static', filename=pet.foto) }}" class="pet-img card-img-top">
+                            {% endif %}
+                        {% else %}
+                            <img src="https://via.placeholder.com/300x200.png?text=Sem+Foto" class="pet-img card-img-top">
+                        {% endif %}
+
+                        <div class="card-body">
+                            <h5 class="card-title">{{ pet.nome }}</h5>
+                            <p class="card-text text-muted">
+                                {{ pet.raca or "Raça não informada" }}<br>
+                                {{ pet.especie or "Espécie não informada" }}
+                            </p>
+
+                            <a href="{{ url_for('pet_dashboard', pet_id=pet.id) }}" class="btn btn-outline-primary btn-sm w-100">
+                                Ver detalhes
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p class="text-muted">Você ainda não cadastrou nenhum pet.</p>
+        {% endif %}
+
+        <!-- Últimos cuidados -->
+        <h4 class="mt-5 mb-3">Últimos cuidados</h4>
+
+        {% if ultimos_cuidados %}
+            <ul class="list-group">
+                {% for c in ultimos_cuidados %}
+                <li class="list-group-item">
+                    <strong>{{ c.tipo }}</strong> — {{ c.data.strftime("%d/%m/%Y") }}
+                    <br>
+                    <small class="text-muted">
+                        Pet: {{ c.pet.nome }} — {{ c.descricao or "Sem descrição" }}
+                    </small>
+                </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p class="text-muted">Nenhum cuidado registrado ainda.</p>
+        {% endif %}
+
+    </div>
+</div>
+{% endblock %}

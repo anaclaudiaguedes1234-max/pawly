@@ -1,0 +1,54 @@
+{% extends "layout.html" %}
+{% block title %}Criar Conta{% endblock %}
+
+{% block content %}
+<div class="pawly-auth-section">
+
+    <div class="pawly-auth-card text-center">
+
+        <div class="pawly-header-emoji">🐶✨</div>
+        <h2 class="pawly-page-title">Crie sua conta 💜</h2>
+        <p class="pawly-subtitle">
+            Cadastre-se para organizar a saúde e o bem-estar dos seus pets.
+        </p>
+
+        {% if error %}
+            <div class="alert alert-danger text-center mt-3">{{ error }}</div>
+        {% endif %}
+
+        <form method="POST" class="mt-4 text-start">
+
+            <div class="mb-3">
+                <label class="form-label">Nome</label>
+                <input type="text" class="form-control" name="nome" required>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Email</label>
+                <input type="email" class="form-control" name="email" required>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Senha</label>
+                <input type="password" class="form-control" name="senha" required>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Confirmar senha</label>
+                <input type="password" class="form-control" name="confirma" required>
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100 mt-3">
+                Criar conta
+            </button>
+        </form>
+
+        <p class="mt-4">
+            Já tem conta?
+            <a href="{{ url_for('login') }}">Entrar</a>
+        </p>
+
+    </div>
+
+</div>
+{% endblock %}
